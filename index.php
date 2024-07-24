@@ -52,17 +52,80 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Php Hotel</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
     
-    <ul>
-        <?php foreach($hotels as $hotel) : ?>
-            <?php foreach($hotel as $chiave => $valore) : ?>
-                <li><?php echo $chiave ?> <?php echo $valore ?></li>
-            <?php endforeach; ?>
-        <?php endforeach; ?>
-    </ul>
+    <!-- <ul> -->
+        <?php //foreach($hotels as $hotel) : ?>
+            <?php //foreach($hotel as $chiave => $valore) : ?>
+                <!-- <li><?php //echo $chiave ?> <?php //echo $valore ?></li> -->
+            <?php //endforeach; ?>
+        <?php //endforeach; ?>
+    <!-- </ul> -->
+
+
+    <div class="container-md mt-5">
+    <!-- table -->
+        <table class="table table-striped table-hover">
+            <thead>
+                
+                <tr>
+                    <th scope="col"></th>
+                    <?php foreach($hotels[0] as $chiave => $valore) : ?>
+                        <th scope="col"><?php echo $chiave ?></th>
+                    <?php endforeach ?>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                    <?php foreach($hotels as $hotel) : ?>
+                      
+                        <td><?php echo $hotel['name'] ?></td>
+
+                    <?php endforeach; ?>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                    <?php foreach($hotels as $hotel) : ?>
+                      
+                        <td><?php echo $hotel['description'] ?></td>
+
+                    <?php endforeach; ?>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                    <?php foreach($hotels as $hotel) : ?>
+                        
+                        <td><?php echo $hotel['parking'] ?></td>
+
+                    <?php endforeach; ?>
+                </tr>
+                <tr>
+                <th scope="row">4</th>
+                    <?php foreach($hotels as $hotel) : ?>
+                        
+                        <td><?php echo $hotel['vote'] ?></td>
+
+                    <?php endforeach; ?>
+                </tr>
+                <tr>
+                <th scope="row">5</th>
+                    <?php foreach($hotels as $hotel) : ?>
+                        
+                        <td><?php echo $hotel['distance_to_center'] ?></td>
+
+                    <?php endforeach; ?>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 
 </body>
 </html>
