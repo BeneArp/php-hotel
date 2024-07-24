@@ -2,6 +2,10 @@
 <!-- mostrate le informazioni con una tabella.
 Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -->
 
+<!-- Bonus:
+1 - Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio.
+2 - Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore) -->
+
 <?php
 
     $hotels = [
@@ -44,6 +48,8 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
 
     ];
 
+    $data = $_GET;
+    var_dump($data);
 ?>
 
 <!DOCTYPE html>
@@ -69,12 +75,19 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
 
 
     <div class="container-md mt-5">
-    <!-- table -->
-        <table class="table table-striped table-hover">
+        <form action="index.php" method="GET">
+            <select class="form-select" name="parking" id="">
+                <option value="">Scegli un opzione</option>
+                <option value="si">Con parcheggio</option>
+                <option value="no">Senza parcheggio</option>
+            </select>
+            <button type="submit" class="btn btn-primary mt-3">Invia</button>
+        </form>
+        <!-- table -->
+        <table class="table table-striped table-hover mt-5">
             <thead>
                 
                 <tr>
-                    <th scope="col"></th>
                     <?php foreach($hotels[0] as $chiave => $valore) : ?>
                         <th scope="col"><?php echo $chiave ?></th>
                     <?php endforeach ?>
@@ -83,43 +96,14 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
 
             <tbody>
                 <tr>
-                <th scope="row">1</th>
                     <?php foreach($hotels as $hotel) : ?>
-                      
-                        <td><?php echo $hotel['name'] ?></td>
-
-                    <?php endforeach; ?>
+                        <tr>
+                    <th scope="row"><?php echo $hotel['name'] ?></th>
+                    <td><?php echo $hotel['description'] ?></td>
+                    <td><?php echo $hotel['parking'] ?></td>
+                    <td><?php echo $hotel['distance_to_center'] ?> km</td>
+                    <td><?php echo $hotel['vote'] ?>/5</td>
                 </tr>
-                <tr>
-                <th scope="row">2</th>
-                    <?php foreach($hotels as $hotel) : ?>
-                      
-                        <td><?php echo $hotel['description'] ?></td>
-
-                    <?php endforeach; ?>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                    <?php foreach($hotels as $hotel) : ?>
-                        
-                        <td><?php echo $hotel['parking'] ?></td>
-
-                    <?php endforeach; ?>
-                </tr>
-                <tr>
-                <th scope="row">4</th>
-                    <?php foreach($hotels as $hotel) : ?>
-                        
-                        <td><?php echo $hotel['vote'] ?></td>
-
-                    <?php endforeach; ?>
-                </tr>
-                <tr>
-                <th scope="row">5</th>
-                    <?php foreach($hotels as $hotel) : ?>
-                        
-                        <td><?php echo $hotel['distance_to_center'] ?></td>
-
                     <?php endforeach; ?>
                 </tr>
             </tbody>
