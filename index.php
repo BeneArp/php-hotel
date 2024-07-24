@@ -51,9 +51,18 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Php Hotel</title>
 </head>
+
 <body>
     
+    <ul>
+        <?php foreach($hotels as $hotel) : ?>
+            <?php foreach($hotel as $chiave => $valore) : ?>
+                <li><?php echo $chiave ?> <?php echo $valore ?></li>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    </ul>
+
 </body>
 </html>
