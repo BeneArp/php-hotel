@@ -50,6 +50,7 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
 
     $data = $_GET;
     var_dump($data);
+    // var_dump($hotels)
 ?>
 
 <!DOCTYPE html>
@@ -95,17 +96,75 @@ Il valore relativo al parcheggio deve essere indicato con “Sì” o “No” -
             </thead>
 
             <tbody>
-                <tr>
-                    <?php foreach($hotels as $hotel) : ?>
-                        <tr>
-                    <th scope="row"><?php echo $hotel['name'] ?></th>
-                    <td><?php echo $hotel['description'] ?></td>
-                    <td><?php echo $hotel['parking'] ?></td>
-                    <td><?php echo $hotel['distance_to_center'] ?> km</td>
-                    <td><?php echo $hotel['vote'] ?>/5</td>
-                </tr>
-                    <?php endforeach; ?>
-                </tr>
+                    
+                <?php if($data['parking'] === 'si'): ?>
+                    
+                    <?php array_splice($hotels, 2, 2) ?>
+                        <?php foreach($hotels as $hotel) : ?>
+                            <tr>
+                                
+                                <th scope="row"><?php echo $hotel['name'] ?></th>
+                                <td><?php echo $hotel['description'] ?></td>
+
+                                    <?php if($hotel['parking'] === true) :?>
+                                        <td>Si</td>
+                                    
+                                    <?php else :?>
+                                        <td>No</td>
+                                    <?php endif; ?>
+
+                                <td><?php echo $hotel['vote'] ?>/5</td>
+                                <td><?php echo $hotel['distance_to_center'] ?> km</td>
+                                
+                            </tr>
+                        <?php endforeach; ?>
+
+                    <?php elseif($data['parking'] === 'no') :?>
+                        <?php array_splice($hotels, 0, 2) ?>
+                        <?php array_splice($hotels, 2, 1) ?>
+
+                        <?php foreach($hotels as $hotel) : ?>
+                                <tr>
+                                    
+                                    <th scope="row"><?php echo $hotel['name'] ?></th>
+                                    <td><?php echo $hotel['description'] ?></td>
+
+                                        <?php if($hotel['parking'] === true) :?>
+                                            <td>Si</td>
+                                        
+                                        <?php else :?>
+                                            <td>No</td>
+                                        <?php endif; ?>
+
+                                    <td><?php echo $hotel['vote'] ?>/5</td>
+                                    <td><?php echo $hotel['distance_to_center'] ?> km</td>
+                                    
+                                </tr>
+                        <?php endforeach; ?>
+                                            
+                    <?php else : ?>
+                        
+                        <?php foreach($hotels as $hotel) : ?>
+                                <tr>
+                                    
+                                    <th scope="row"><?php echo $hotel['name'] ?></th>
+                                    <td><?php echo $hotel['description'] ?></td>
+
+                                        <?php if($hotel['parking'] === true) :?>
+                                            <td>Si</td>
+                                        
+                                        <?php else :?>
+                                            <td>No</td>
+                                        <?php endif; ?>
+
+                                    <td><?php echo $hotel['vote'] ?>/5</td>
+                                    <td><?php echo $hotel['distance_to_center'] ?> km</td>
+                                    
+                                </tr>
+                        <?php endforeach; ?>
+
+                <?php endif; ?>
+
             </tbody>
         </table>
 
